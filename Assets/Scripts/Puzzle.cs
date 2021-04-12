@@ -2,21 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
-public class piecesScript : MonoBehaviour
+public class Puzzle : MonoBehaviour
 {
     private Vector3 RightPosition;
     public bool InRightPosition;
     public bool Selected;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        RightPosition = transform.position;
-        transform.position = new Vector3(Random.Range(0f, 8f), Random.Range(-4f, 4f));
-    }
 
-    // Update is called once per frame
     void Update()
     {
         if(Vector3.Distance(transform.position, RightPosition) < 0.5f)
@@ -25,11 +18,26 @@ public class piecesScript : MonoBehaviour
             {
                 if(InRightPosition == false)
                 {
+                    FindObjectOfType<LevelLoader>().AddElementInRightPosition();
                     transform.position = RightPosition;
                     InRightPosition = true;
                     GetComponent<SortingGroup>().sortingOrder = 0;
+                    FindObjectOfType<Points>().AddPoints(2);
                 }
             }
         }
+    }
+
+    public void MixPuzzles()
+    {
+        RightPosition = transform.position;
+        InRightPosition = false;
+        transform.position = new Vector3(Random.Range(1f, 8f), Random.Range(-3f, 2f));
+    }
+
+    public void SetPhotoInPuzzle(Image Photo)
+    {
+        transform.Find("Background").GetComponent<SpriteRenderer>().sprite = Photo.sprite;
+        MixPuzzles();
     }
 }

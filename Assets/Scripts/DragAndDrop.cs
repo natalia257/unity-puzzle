@@ -20,22 +20,22 @@ public class DragAndDrop : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-            if(hit.transform.CompareTag("Puzzle"))
+            if(hit && hit.transform.CompareTag("Puzzle"))
             {
-                if (!hit.transform.GetComponent<piecesScript>().InRightPosition)
+                if (!hit.transform.GetComponent<Puzzle>().InRightPosition)
                 {
                     SelectedPiece = hit.transform.gameObject;
-                    SelectedPiece.GetComponent<piecesScript>().Selected = true;
+                    SelectedPiece.GetComponent<Puzzle>().Selected = true;
                     SelectedPiece.GetComponent<SortingGroup>().sortingOrder = OIL;
                     OIL++;
-                }
+                } 
             }
         }
         if(Input.GetMouseButtonUp(0))
         {
             if (SelectedPiece != null)
             {
-                SelectedPiece.GetComponent<piecesScript>().Selected = false;
+                SelectedPiece.GetComponent<Puzzle>().Selected = false;
                 SelectedPiece = null;
             }
         }
