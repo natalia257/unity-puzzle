@@ -5,27 +5,22 @@ using UnityEngine.Rendering;
 
 public class DragAndDrop : MonoBehaviour
 {
-    public GameObject SelectedPiece;
-    int OIL = 1;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private GameObject SelectedPiece;
+    private int OIL = 1;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if(Input.GetMouseButtonDown(0))
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             if(hit && hit.transform.CompareTag("Puzzle"))
             {
-                if (!hit.transform.GetComponent<Puzzle>().InRightPosition)
+                if (!hit.transform.GetComponent<Puzzle>().GetInRightPosition())
                 {
                     SelectedPiece = hit.transform.gameObject;
-                    SelectedPiece.GetComponent<Puzzle>().Selected = true;
+                    SelectedPiece.GetComponent<Puzzle>().SetSelected(true);
                     SelectedPiece.GetComponent<SortingGroup>().sortingOrder = OIL;
                     OIL++;
                 } 
@@ -35,7 +30,7 @@ public class DragAndDrop : MonoBehaviour
         {
             if (SelectedPiece != null)
             {
-                SelectedPiece.GetComponent<Puzzle>().Selected = false;
+                SelectedPiece.GetComponent<Puzzle>().SetSelected(false);
                 SelectedPiece = null;
             }
         }

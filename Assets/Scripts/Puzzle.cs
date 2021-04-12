@@ -6,11 +6,26 @@ using UnityEngine.UI;
 
 public class Puzzle : MonoBehaviour
 {
+    [SerializeField]
     private Vector3 RightPosition;
-    public bool InRightPosition;
-    public bool Selected;
+    
+    private bool InRightPosition;
+    
+    private bool Selected;
+    
+    public bool GetInRightPosition() { return InRightPosition; }
+    public void SetInRightPosition(bool InRightPosition) 
+    { 
+        this.InRightPosition = InRightPosition; 
+    }
 
-    void Update()
+    public bool GetSelected() { return Selected; }
+    public void SetSelected(bool Selected)
+    {
+        this.Selected = Selected;
+    }
+
+    private void Update()
     {
         if(Vector3.Distance(transform.position, RightPosition) < 0.5f)
         {

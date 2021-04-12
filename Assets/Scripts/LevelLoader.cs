@@ -5,9 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    int numberElementInRightPosition;
-    public GameObject WinPanel;
-    public GameObject StartPanel;
+    private int numberElementInRightPosition;
+
+    [SerializeField]
+    private GameObject WinPanel;
+    [SerializeField]
+    private GameObject StartPanel;
 
     private void Start()
     {

@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class MapSelect : MonoBehaviour
 {
-    public GameObject StartPanel;
+    [SerializeField]
+    private GameObject StartPanel;
 
     public void SetMapPhoto(Image Photo)
     {

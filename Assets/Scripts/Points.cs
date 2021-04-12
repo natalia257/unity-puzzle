@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class Points : MonoBehaviour
 {
-    int points = 0;
-    Text pointsText;
+    [SerializeField]
+    private Text pointsText;
+
+    private int points = 0;
 
     // Start is called before the first frame update
     void Start()
